@@ -147,6 +147,7 @@ class App extends React.Component {
       </Jumbotron>
 
       <div className="noteTable">
+        <h5>Note Archive</h5>
         <Table striped bordered hover>
               <thead>
                 <tr>
