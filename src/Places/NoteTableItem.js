@@ -22,6 +22,8 @@ class NoteTableItem extends React.Component {
     }
 
     // Used to update props sent from parent component
+
+    
     componentWillReceiveProps(newProps) {
         this.setState({
             id: newProps.id,
@@ -31,10 +33,14 @@ class NoteTableItem extends React.Component {
         });
     }
 
+    // Used in the parent component to delete from DB
+
     onDelete() {
         const {onDelete} = this.props;
         onDelete(this.state.id);
     }
+    
+    // Used in the parent component to update the text views of the edit note section
 
     onView() {
         const {onView} = this.props;
