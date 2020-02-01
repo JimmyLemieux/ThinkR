@@ -2,8 +2,8 @@ import React from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Jumbotron, Table, Button, Container, Row, Col } from 'react-bootstrap';
-import NoteTableItem  from './NoteTableItem';
-import EditNote from './EditNote';
+import NoteTableItem  from './Places/NoteTableItem';
+import EditNote from './Places/EditNote';
 
 
 
@@ -14,7 +14,7 @@ class App extends React.Component {
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
-    const item = this.getItemFromDataBase();
+    const item = localStorage.getItem('notes');
 
     this.state = {
       date: date,
@@ -29,16 +29,6 @@ class App extends React.Component {
     this.clearDataBase = this.clearDataBase.bind(this);
     this.viewNote = this.viewNote.bind(this);
     this.saveNote = this.saveNote.bind(this);
-  }
-
-  // Begin of DataBase helper methods
-
-  getItemFromDataBase(itemName) {
-    return localStorage.getItem(itemName);
-  } 
-
-  setItemInDataBase(itemName, item) {
-    localStorage.setItem(itemName, JSON.stringify(item));
   }
 
   populateTestDB() {
@@ -59,8 +49,8 @@ class App extends React.Component {
       }
     
     ]
-    this.setItemInDataBase('notes', notes);
-    const jsonNotes = JSON.parse(this.getItemFromDataBase('notes'));
+    localStorage.setItem('notes', JSON.stringify(notes));
+    const jsonNotes = JSON.parse(localStorage.getItem('notes'));
     this.setState({notes: jsonNotes});
   }
 
@@ -94,7 +84,7 @@ class App extends React.Component {
       return note.id !== noteId
     });
     this.setState({notes: filteredNotes});
-    this.setItemInDataBase('notes', JSON.stringify(filteredNotes));
+    localStorage.setItem('notes', JSON.stringify(filteredNotes));
   }
 
   // Sent to the Edit Note to populate our state in parent component
@@ -132,7 +122,7 @@ class App extends React.Component {
       
       });
     
-    this.setItemInDataBase('notes', JSON.stringify(notes));
+    localStorage.setItem('notes', JSON.stringify(notes));
   }
 
 // Render our JSX
