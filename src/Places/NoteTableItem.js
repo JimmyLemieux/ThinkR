@@ -23,7 +23,7 @@ class NoteTableItem extends React.Component {
 
     // Used to update props sent from parent component
 
-    
+
     componentWillReceiveProps(newProps) {
         this.setState({
             id: newProps.id,
@@ -50,7 +50,7 @@ class NoteTableItem extends React.Component {
     render() {
         return (
             <tr>
-                <td>{this.state.id}</td>
+                <td>{this.state.id + 1}</td>
                 <td>{this.state.name}</td>
                 <td>{this.state.date}</td>
                 <td><Button onClick={this.onView}>View</Button></td>
